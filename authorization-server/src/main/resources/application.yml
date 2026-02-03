@@ -1,0 +1,22 @@
+spring:
+ application:
+  name: authorization-server
+ devtools:
+    restart:
+      enabled: false
+
+ jpa:
+  hibernate:
+   ddl-auto: create-drop
+  properties:
+   hibernate:
+    '[default_schema]': boutique
+
+ datasource:
+  url: ${BOUTIQUE_DB_URL}
+  username: ${BOUTIQUE_DB_USER}
+  password: ${BOUTIQUE_DB_PASS}
+  driver-class-name: org.postgresql.Driver
+
+server:
+ port: 9000

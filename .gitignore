@@ -1,0 +1,43 @@
+# Maven
+target/
+*.jar
+*.war
+*.ear
+.classpath
+.project
+.settings/
+.sts4-cache/
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+*~
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+.npm
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build
+build/
+dist/
+
+# Misc
+.cache/
+.boutique_swagger/
