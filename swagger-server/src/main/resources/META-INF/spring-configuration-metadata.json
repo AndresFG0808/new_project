@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "app",
+      "type": "com.boutique.swagger.config.AppProperties",
+      "description": "Propiedades personalizadas de la aplicación Boutique"
+    },
+    {
+      "name": "app.swagger",
+      "type": "com.boutique.swagger.config.SwaggerProperties",
+      "description": "Configuración de Swagger/OpenAPI",
+      "sourceType": "com.boutique.swagger.config.AppProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.swagger.servers",
+      "type": "java.util.List",
+      "description": "Lista de servidores disponibles en Swagger UI"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: swagger-server
+
+server:
+  port: 8080
+
+# Configuración personalizada de Boutique
+app:
+  swagger:
+    servers:
+      - name: "MSV Usuario"
+        url: "http://localhost:8081"
+        description: "Microsservicio de Usuarios"
+      
+      - name: "Authorization Server"
+        url: "http://localhost:9000"
+        description: "Servidor de Autorización OAuth2"
+
+# Springdoc OpenAPI Configuration
+springdoc:
+  swagger-ui:
+    # URLs de las especificaciones OpenAPI de cada microservicio
+    urls:
+      - name: "MSV Usuario"
+        url: "http://localhost:8081/v3/api-docs"
+      - name: "Authorization Server"
+        url: "http://localhost:9000/v3/api-docs"
+    # Mostrar el selector de especificaciones
+    use-root-path: true
+  api-docs:
+    path: /v3/api-docs

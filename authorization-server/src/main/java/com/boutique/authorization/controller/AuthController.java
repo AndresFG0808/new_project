@@ -45,13 +45,13 @@ public class AuthController {
         return ResponseEntity.ok(usuarioService.crearUsuario(request));
     }
 	
-	   @GetMapping("/admin/usuarios")
-	    public ResponseEntity<Set<UsuarioResponse>> listarUsuarios() {
-	    	return ResponseEntity.ok(usuarioService.listarUsuarios());
-	    }
-	   
-	   @DeleteMapping("/admin/usuarios/{username}")
-	    public ResponseEntity<UsuarioResponse> eliminarUsuarios(@PathVariable String username) {
-	    	return ResponseEntity.ok(usuarioService.eliminarUsuario(username));
-	    }
+	@GetMapping("/admin/usuarios")
+	public ResponseEntity<Set<UsuarioResponse>> listarUsuarios() {
+    	return ResponseEntity.ok(usuarioService.listarUsuarios());
+    }
+   
+	@DeleteMapping("/admin/usuarios/{username}")
+	public ResponseEntity<UsuarioResponse> eliminarUsuarios(@PathVariable String username) {
+    	return ResponseEntity.ok(usuarioService.eliminarUsuario(username));
+    }
 }

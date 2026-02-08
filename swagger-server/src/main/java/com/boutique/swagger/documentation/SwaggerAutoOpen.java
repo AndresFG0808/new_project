@@ -1,15 +1,11 @@
-package com.boutique.commons.documentations;
+package com.boutique.swagger.documentation;
+
+import java.awt.Desktop;
+import java.net.URI;
+
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
-
-import java.awt.Desktop;
-import java.io.File;
-import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.concurrent.TimeUnit;
 
 @Component
 public class SwaggerAutoOpen implements ApplicationListener<ApplicationReadyEvent> {
@@ -18,7 +14,6 @@ public class SwaggerAutoOpen implements ApplicationListener<ApplicationReadyEven
     public void onApplicationEvent(ApplicationReadyEvent event) {
         String port = event.getApplicationContext().getEnvironment().getProperty("server.port", "8761");
         String swaggerUrl = "http://localhost:" + port + "/swagger-ui.html";
-        String appName = event.getApplicationContext().getApplicationName();
         
         System.out.println("\n" + "=".repeat(60));
         System.out.println("Aplicación iniciada correctamente!");
@@ -26,24 +21,24 @@ public class SwaggerAutoOpen implements ApplicationListener<ApplicationReadyEven
         System.out.println("=".repeat(60) + "\n");
         
         // Intentar recargar si ya está abierto, sino abrir una nueva pestaña
-        if (!tryRefreshOpenBrowser(swaggerUrl)) {
+        if (!tryRefreshOpenBrowser()) {
             openBrowser(swaggerUrl);
         }
     }
     
-    private boolean tryRefreshOpenBrowser(String url) {
+    private boolean tryRefreshOpenBrowser() {
         try {
             String os = System.getProperty("os.name").toLowerCase();
             
             if (os.contains("win")) {
                 // Windows: intentar encontrar y refrescar la ventana del navegador
-                return refreshBrowserWindowWindows(url);
+                return refreshBrowserWindowWindows();
             } else if (os.contains("mac")) {
                 // Mac: intentar con Safari/Chrome
-                return refreshBrowserWindowMac(url);
+                return refreshBrowserWindowMac();
             } else if (os.contains("nix") || os.contains("nux")) {
                 // Linux: intentar con xdg-open
-                return refreshBrowserWindowLinux(url);
+                return refreshBrowserWindowLinux();
             }
             return false;
         } catch (Exception e) {
@@ -51,7 +46,7 @@ public class SwaggerAutoOpen implements ApplicationListener<ApplicationReadyEven
         }
     }
     
-    private boolean refreshBrowserWindowWindows(String url) {
+    private boolean refreshBrowserWindowWindows() {
         try {
             // Intentar usar PowerShell para buscar ventana del navegador y refrescar
             String psScript = String.join("\n",
@@ -95,7 +90,7 @@ public class SwaggerAutoOpen implements ApplicationListener<ApplicationReadyEven
         }
     }
     
-    private boolean refreshBrowserWindowMac(String url) {
+    private boolean refreshBrowserWindowMac() {
         try {
             Runtime.getRuntime().exec(new String[]{
                 "osascript", "-e",
@@ -109,7 +104,7 @@ public class SwaggerAutoOpen implements ApplicationListener<ApplicationReadyEven
         }
     }
     
-    private boolean refreshBrowserWindowLinux(String url) {
+    private boolean refreshBrowserWindowLinux() {
         try {
             // En Linux, intentar usar xdotool si está disponible
             Runtime.getRuntime().exec(new String[]{
@@ -121,31 +116,6 @@ public class SwaggerAutoOpen implements ApplicationListener<ApplicationReadyEven
         } catch (Exception e) {
             return false;
         }
-    }
-    
-    private boolean hasBeenOpenedInSession(String appName, String port) {
-        try {
-            Path flagFile = getFlagFilePath(appName, port);
-            return Files.exists(flagFile);
-        } catch (Exception e) {
-            return false;
-        }
-    }
-    
-    private void markAsOpened(String appName, String port) {
-        try {
-            Path flagFile = getFlagFilePath(appName, port);
-            Files.createFile(flagFile);
-        } catch (Exception e) {
-            // Ignorar si no se puede crear el archivo
-        }
-    }
-    
-    private Path getFlagFilePath(String appName, String port) {
-        String userHome = System.getProperty("user.home");
-        String flagDir = userHome + File.separator + ".boutique_swagger";
-        new File(flagDir).mkdirs();
-        return Paths.get(flagDir, "swagger_opened_" + appName + "_" + port + ".flag");
     }
 
     private void openBrowser(String url) {

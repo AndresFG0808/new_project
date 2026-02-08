@@ -52,17 +52,6 @@ public class SecurityConfig {
 
 	@Bean
 	@Order(0)
-	SecurityFilterChain swaggerSecurityFilterChain(HttpSecurity http)
-			throws Exception {
-		http
-			.securityMatcher("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs", "/v3/api-docs/**")
-			.authorizeHttpRequests((authorize) -> authorize.anyRequest().permitAll())
-			.csrf(csrf -> csrf.disable());
-		return http.build();
-	}
-
-	@Bean
-	@Order(1)
 	SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http)
 			throws Exception {
 		OAuth2AuthorizationServerConfigurer authorizationServerConfigurer =
@@ -75,8 +64,7 @@ public class SecurityConfig {
 					.oidc(Customizer.withDefaults())	// Enable OpenID Connect 1.0
 			)
 			.authorizeHttpRequests((authorize) ->
-				authorize
-					.anyRequest().authenticated()
+				authorize.anyRequest().authenticated()
 			)
 			// Redirect to the login page when not authenticated from the
 			// authorization endpoint
