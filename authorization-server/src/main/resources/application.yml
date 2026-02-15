@@ -10,7 +10,7 @@ spring:
    ddl-auto: create-drop
   properties:
    hibernate:
-    '[default_schema]': boutique #Esquema de la base de datos
+    '[default_schema]': ${BOUTIQUE_SCHEMA_DB} #Esquema de la base de datos
 
  datasource:
   url: ${BOUTIQUE_DB_URL}

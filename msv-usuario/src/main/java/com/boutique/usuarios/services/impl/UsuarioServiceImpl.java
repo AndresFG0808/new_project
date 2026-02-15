@@ -1,4 +1,4 @@
-package com.boutique.usuarios.services;
+package com.boutique.usuarios.services.impl;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -14,6 +14,7 @@ import com.boutique.commons.exceptions.EntidadRelacionadaException;
 import com.boutique.usuarios.entities.Usuario;
 import com.boutique.usuarios.mappers.UsuarioMapper;
 import com.boutique.usuarios.repositories.UsuarioRepository;
+import com.boutique.usuarios.services.UsuarioService;
 
 /**
  * Implementación del servicio de Usuarios.

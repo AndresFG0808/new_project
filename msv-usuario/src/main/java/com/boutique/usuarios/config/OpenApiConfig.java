@@ -1,5 +1,7 @@
 package com.boutique.usuarios.config;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,6 +10,7 @@ import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 
 /**
  * Configuración de OpenAPI para msv-usuario.
@@ -19,6 +22,10 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
+            .servers(Arrays.asList(
+                new Server().url("http://localhost:8081").description("localhost"),
+                new Server().url("http://localhost:8090/api").description("API Gateway")
+            ))
             .info(new Info()
                 .title("MSV Usuario API")
                 .version("1.0.0")

@@ -9,6 +9,7 @@ import com.boutique.commons.dto.UsuariosRequest;
 import com.boutique.commons.dto.UsuariosResponse;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/usuarios")
 public class UsuariosController extends CommonController<UsuariosRequest, UsuariosResponse, UsuarioService> {
     

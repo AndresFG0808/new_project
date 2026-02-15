@@ -22,14 +22,6 @@ spring:
                 - Path=/api/usuarios/**
               filters:
                 - StripPrefix=1
-            
-            # Rutas para documentación OpenAPI de cada microservicio
-            - id: msv-usuario-api-docs
-              uri: lb://msv-usuario
-              predicates:
-                - Path=/v3/api-docs/usuarios
-              filters:
-                - RewritePath=/v3/api-docs/usuarios, /v3/api-docs
 
 server:
   port: 8090
@@ -50,14 +42,3 @@ management:
   endpoint:
     gateway:
       access: unrestricted
-
-# Configuración de Springdoc OpenAPI
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-  api-docs:
-    enabled: true
-    path: /v3/api-docs
-  # Configuración para Spring Cloud Gateway
-  enable-spring-cloud-gateway: true
-  show-actuator: false
