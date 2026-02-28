@@ -12,20 +12,13 @@ import {
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link as RouterLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useSidebar } from '../../context/SidebarContext';
 import { menuItems } from '../../menu-items';
 
 const DRAWER_WIDTH = 260;
 
 const Sidebar = ({ open }) => {
-  const [expandedItems, setExpandedItems] = useState({});
-
-  const handleToggleExpand = (itemId) => {
-    setExpandedItems((prev) => ({
-      ...prev,
-      [itemId]: !prev[itemId],
-    }));
-  };
+  const { expandedItems, handleToggleExpand } = useSidebar();
 
   const renderMenuItem = (item, level = 0) => {
     const isExpanded = expandedItems[item.id];
@@ -33,8 +26,7 @@ const Sidebar = ({ open }) => {
     if (item.type === 'group') {
       return (
         <Box key={item.id}>
-          <Typography
-            variant="caption"
+          <Typography variant="caption"
             sx={{
               display: 'block',
               px: 2,
@@ -88,12 +80,7 @@ const Sidebar = ({ open }) => {
 
     if (item.type === 'item') {
       return (
-        <ListItem
-          button
-          component={RouterLink}
-          to={item.url || '#'}
-          key={item.id}
-          sx={{
+        <ListItem button component={RouterLink} to={item.url || '#'} key={item.id} sx={{
             pl: 2 + level * 2,
             '&:hover': {
               bgcolor: 'action.hover',
@@ -115,12 +102,9 @@ const Sidebar = ({ open }) => {
 
   const drawerContent = (
     <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      {/* Main Menu */}
       <List sx={{ flex: 1, py: 1 }}>
         {menuItems.items?.map((item) => renderMenuItem(item, 0))}
       </List>
-
-      {/* Footer Info */}
       <Box sx={{ p: 2, bgcolor: '#f5f5f5', color: 'text.secondary' }}>
         <Typography variant="caption">v1.0.0</Typography>
       </Box>
@@ -128,9 +112,7 @@ const Sidebar = ({ open }) => {
   );
 
   return (
-    <Drawer
-      variant="persistent"
-      open={open}
+    <Drawer variant="persistent" open={open}
       sx={{
         width: open ? DRAWER_WIDTH : 0,
         flexShrink: 0,

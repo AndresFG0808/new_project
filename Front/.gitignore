@@ -22,3 +22,22 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Carpeta de assets confidenciales del cliente (SAT)
+src/assets/secure/*
+!src/assets/secure/.gitignore
+!src/assets/secure/README.md
+
+# Variables de entorno locales
+.env.local
+.env.*.local
+
+# Certificados y claves sensibles
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.crt
+*.cer
+*.der

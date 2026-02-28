@@ -5,6 +5,13 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { store, persistor } from "./Redux/Store";
 import App from "./App/App";
+import { getSecureImage } from "./assets/Config/secureAssets";
+
+// Inyectar favicon desde secureAssets
+const favicon = document.querySelector("link#favicon");
+if (favicon) {
+  favicon.href = getSecureImage('satSinTexto');
+}
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

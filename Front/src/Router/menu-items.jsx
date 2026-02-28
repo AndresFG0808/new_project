@@ -36,6 +36,13 @@ const menuItems = {
                     url: '/tareas',
                     icon: <AssignmentIcon />,
                 },
+                {
+                    id: 'tareas_acciones_2',
+                    title: 'Mis Tareas 2',
+                    type: 'item',
+                    url: '/tareas2',
+                    icon: <AssignmentIcon />
+                },
             ],
         },
     ],

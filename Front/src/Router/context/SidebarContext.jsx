@@ -1,10 +1,24 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const SidebarContext = createContext();
 
-export const SidebarProvider = ({ children, sidebarOpen }) => {
+export const SidebarProvider = ({ children }) => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [expandedItems, setExpandedItems] = useState({});
+
+  const handleToggleExpand = (itemId) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [itemId]: !prev[itemId],
+    }));
+  };
+
+  const handleMenuClick = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <SidebarContext.Provider value={{ sidebarOpen }}>
+    <SidebarContext.Provider value={{ sidebarOpen, setSidebarOpen, expandedItems, handleToggleExpand, handleMenuClick }}>
       {children}
     </SidebarContext.Provider>
   );
