@@ -12,7 +12,7 @@ import {
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link as RouterLink } from 'react-router-dom';
-import { useSidebar } from '../../context/SidebarContext';
+import { useSidebar } from '../context/SidebarContext';
 import { menuItems } from '../../menu-items';
 
 const DRAWER_WIDTH = 260;
@@ -52,7 +52,6 @@ const Sidebar = ({ open }) => {
       return (
         <Box key={item.id}>
           <ListItem
-            button
             onClick={() => handleToggleExpand(item.id)}
             sx={{
               pl: 2 + level * 2,
@@ -80,7 +79,7 @@ const Sidebar = ({ open }) => {
 
     if (item.type === 'item') {
       return (
-        <ListItem button component={RouterLink} to={item.url || '#'} key={item.id} sx={{
+        <ListItem component={RouterLink} to={item.url || '#'} key={item.id} sx={{
             pl: 2 + level * 2,
             '&:hover': {
               bgcolor: 'action.hover',

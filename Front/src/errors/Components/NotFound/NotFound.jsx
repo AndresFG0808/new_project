@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { Link as RouterLink } from "react-router-dom";
 import Layout from "../../../Router/Dashboard/Layout/Layout";
 import { getSecureImage } from "../../../assets/Config/secureAssets";
@@ -19,14 +18,6 @@ const NotFound = () => {
           textAlign: "center",
         }}
       >
-        <ErrorOutlineIcon
-          sx={{
-            fontSize: 80,
-            color: "error.main",
-            mb: 2,
-          }}
-        />
-
         <Typography
           variant="h1"
           sx={{

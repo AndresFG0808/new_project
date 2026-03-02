@@ -8,7 +8,7 @@ import App from "./App/App";
 import { getSecureImage } from "./assets/Config/secureAssets";
 
 // Inyectar favicon desde secureAssets
-const favicon = document.querySelector("link#favicon");
+const favicon = document.querySelector("link[rel='icon']");
 if (favicon) {
   favicon.href = getSecureImage('satSinTexto');
 }

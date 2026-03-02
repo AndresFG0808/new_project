@@ -6,7 +6,7 @@ import { getSecureImage } from "../../assets/Config/secureAssets";
 const Tareas = () => {
   return (
     <Layout imgIcon={getSecureImage('sat')} textTitle="Bienvenido a tu Dashboard" textSubTitle="Aquí podrás gestionar tus módulos y configuraciones">
-      <Box sx={{ my: 4 }}>
+      <Box>
         <Typography variant="h6" gutterBottom>
           Contenedor de tareas
         </Typography>

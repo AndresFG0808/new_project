@@ -9,7 +9,6 @@ import {
   Avatar,
   Divider,
 } from "@mui/material";
-import SecurityIcon from "@mui/icons-material/Security";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -17,6 +16,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useState } from "react";
 import ImagenComponente from "../../../assets/images/ImagenComponente/ImagenComponente";
 import { getSecureImage } from "../../../assets/Config/secureAssets";
+import { Boton } from "../../../assets/Colores";
 
 const Navbar = ({ onMenuClick }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -32,7 +32,7 @@ const Navbar = ({ onMenuClick }) => {
   return (
     <Box
       position="fixed"
-      sx={{ zIndex: 1300, width: "100%", backgroundColor: "#ffff" }}
+      sx={{ zIndex: 1300, width: "100%", backgroundColor: Boton.fondoPrimario }}
     >
       <Toolbar>
         <IconButton
@@ -47,8 +47,7 @@ const Navbar = ({ onMenuClick }) => {
         <Box sx={{ display: "flex", alignItems: "center", gap: 1, flex: 1 }}>
           <ImagenComponente
             ImagenComponente={getSecureImage("satSinTexto")}
-            width="30px"
-            height="30px"
+            width="25px"
           />
           <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
             Gestor de Tareas

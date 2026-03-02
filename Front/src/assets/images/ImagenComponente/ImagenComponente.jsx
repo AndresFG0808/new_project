@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-const ImagenComponente = ({ ImagenComponente, width = "50px", height = "50px" }) => {
+const ImagenComponente = ({ ImagenComponente, width, height}) => {
   return (
     <Box sx={{ width, height }}>
       <img

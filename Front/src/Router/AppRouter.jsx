@@ -1,7 +1,7 @@
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import publicRoutes from './publicRoutes';
-import LoadingSkeleton from '../components/LoadingSkeleton';
+import LoadingSkeleton from '../componentes/LoadingSkeleton/LoadingSkeleton';
 
 const AppRouter = () => {
     return (
